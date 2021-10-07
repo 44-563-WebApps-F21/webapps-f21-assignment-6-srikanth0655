@@ -12,46 +12,66 @@
 
 <h2>Pass phrase by Srikanth Naini</h2>
 
-<form>
+<form class="form-group">
+    <label for="form1_secret_word">Enter the secret Phrase </label>
+    <input type="password" id="form1_secret_word" name="form1_secret_word" min=10 max=50 step=2 value="Secret">
+     <br>
+<br>
 
-    <label for="secretphrase">Enter the secret phrase </label>
-    <input type ="password" id="secretphrase" value ="Let me in"> <br><br>
-    <label for="phrase">Enter a phrase </label>
-    <input type ="text" id="phrase"  autofocus> <br><br>
-    <input type="button" style="background-color: rgb(173, 228, 210)" btn btn primary" onclick="processPhrase()" value="Check the phrase"/>
+    <label for="form1_guess_word">Enter a Phrase</label>
+    <input type="text" id="form1_guess_word" name="form1_guess_word" autofocus> 
+    <br>
+    <br>
+
+    <input type="button" onclick=" processPhrase()" value="Check the Phrase">
+    <br>
 
 </form>
-<br>
-<div id="result"> The text is replaced here </div>
-<br>
-<br>
+
+
+<p id="result">Your Phrase count will be shown here. </p>
+
 <div class="container">
-    <img src= "Antelope.jpg" id="Antelope" alt="Antelope" height="200" width="200" onclick="newImage()">
+    <img id="animals" src="antelope.jpg" class="img-fluid" alt="antelope" onclick="newImage(this)"
+        height="200" width="200">
 </div>
 
-<script> 
+<script>
+    count=0;
 
-var correct=0,wrong=0;
-
-function processPhrase (){
-
-    spValue = document.getElementById("secretphrase").value
-
-    phraseValue = document.getElementById("phrase").value
-
-    resultDiv = document.getElementById("result")
-
-    if(spValue==phraseValue){
-        alert("Access allowed");
-        correct=correct+1;
-    }else{
-        alert("Access denied");
-        wrong=wrong+1;
-
+    correct = 0;
+        wrong = 0;
+    function processPhrase() {
+        console.log("Checking the Guess......")
+        secret_Word = document.getElementById("form1_secret_word").value
+        guess_word = document.getElementById("form1_guess_word").value
+        confirm_guess = confirm("Is this guess word? " + guess_word)
+        result = document.getElementById("result")
+        if(count<3)
+        {
+        if (confirm_guess) {
+            if (secret_Word.localeCompare(guess_word) == 0) {
+                alert("Access Allowed.")
+                correct = correct + 1
+                result.innerHTML = "Correct guess Count: " + correct + "<br>" +"Wrong guess Count: " + wrong
+            }
+            else
+            {
+                alert("Access Denied")
+                wrong = wrong + 1
+                result.innerHTML = "Correct guess Count: " + correct + "<br>" +"Wrong guess Count: " + wrong
+                count++;
+            }
+            
+        } else {
+            alert("Please Phrase the word again.!!!")
+        }
+    }
+    else{
+        alert("Account locked")
+    }
     }
 
-    resultDiv.innerHTML="Correct count: "+correct+'<br>'+" Wrong count: "+wrong; 
-}
 
     var usingImage=1;
     function newImage(){
