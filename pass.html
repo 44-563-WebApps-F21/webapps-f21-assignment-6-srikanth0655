@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+
+<html>
+
+ <head>
+
+     <title>Javascript Assignment</title>
+  
+ </head>
+
+<body>
+
+<h2>Pass phrase by Srikanth Naini</h2>
+
+<form>
+
+    <label for="secretphrase">Enter the secret phrase </label>
+    <input type ="password" id="secretphrase" value ="Let me in"> <br><br>
+    <label for="phrase">Enter a phrase </label>
+    <input type ="text" id="phrase"  autofocus> <br><br>
+    <input type="button" class ="btn btn primary" onclick="processPhrase()" value="Check the phrase"/>
+
+</form>
+<br>
+<div id="result"> The text is replaced here </div>
+<br>
+<br>
+<div class="container">
+    <img src= "Antelope.jpg" id="Antelope" alt="Antelope" height="200" width="200" onclick="newImage()">
+</div>
+
+<script> 
+
+var correct=0,wrong=0;
+
+function processPhrase (){
+
+    spValue = document.getElementById("secretphrase").value
+
+    phraseValue = document.getElementById("phrase").value
+
+    resultDiv = document.getElementById("result")
+
+    if(spValue==phraseValue){
+        alert("Access allowed");
+        correct=correct+1;
+    }else{
+        alert("Access denied");
+        wrong=wrong+1;
+
+    }
+
+    resultDiv.innerHTML="Correct count: "+correct+'<br>'+" Wrong count: "+wrong; 
+}
+
+    var usingImage=1;
+    function newImage(){
+
+        Image=document.getElementById("Antelope")
+        switch(usingImage){
+            case 1 : Image.src = "nigerian goat.jpg"
+                     usingImage =usingImage +1;
+                     break;
+            case 2 : Image.src = "antelope.jpg"
+                     usingImage =usingImage +1;
+                     break; 
+            case 3 : Image.src = "immortal.jpg"
+                     usingImage =usingImage +1;
+                     break; 
+            default:
+                    Image.src="Antelope.jpg"
+                    usingImage = 0;
+
+                           
+        } 
+    }
+
+</script>
+
+</body>
+
+</html>
